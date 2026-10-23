@@ -1,0 +1,37 @@
+Namespace(check=False, text='data/TinyStoriesV2-GPT4-train.txt', val_text='data/TinyStoriesV2-GPT4-valid.txt', save_every=2000, device='gpu', d=384, layers=6, heads=6, ctx=256, batch=64, steps=15000, lr=0.001, warmup=100, weight_decay=0.1, seed=0, eval_every=500, save='models/tinystories_big.npz')
+2,227,753,162 training bytes, 22,502,601 validation bytes, 178 distinct, 10,814,208 parameters
+
+step   500  train loss 1.0310  val loss 0.9997  (125s)
+step  1000  train loss 0.7531  val loss 0.7757  (249s)
+step  1500  train loss 0.7082  val loss 0.7094  (373s)
+step  2000  train loss 0.6652  val loss 0.6740  (497s)
+step  2500  train loss 0.6487  val loss 0.6516  (622s)
+step  3000  train loss 0.6293  val loss 0.6282  (747s)
+step  3500  train loss 0.5926  val loss 0.6183  (871s)
+step  4000  train loss 0.5937  val loss 0.6042  (996s)
+step  4500  train loss 0.6266  val loss 0.5884  (1120s)
+step  5000  train loss 0.5797  val loss 0.5946  (1245s)
+step  5500  train loss 0.5602  val loss 0.5670  (1370s)
+step  6000  train loss 0.5444  val loss 0.5602  (1494s)
+step  6500  train loss 0.5542  val loss 0.5589  (1619s)
+step  7000  train loss 0.5493  val loss 0.5608  (1742s)
+step  7500  train loss 0.5399  val loss 0.5430  (1865s)
+step  8000  train loss 0.5475  val loss 0.5377  (1988s)
+step  8500  train loss 0.5398  val loss 0.5480  (2111s)
+step  9000  train loss 0.5224  val loss 0.5276  (2235s)
+step  9500  train loss 0.5529  val loss 0.5287  (2357s)
+step 10000  train loss 0.4932  val loss 0.5212  (2481s)
+step 10500  train loss 0.5123  val loss 0.5281  (2604s)
+step 11000  train loss 0.5092  val loss 0.5030  (2727s)
+step 11500  train loss 0.5246  val loss 0.5152  (2850s)
+step 12000  train loss 0.5299  val loss 0.5146  (2973s)
+step 12500  train loss 0.5081  val loss 0.5118  (3096s)
+step 13000  train loss 0.5260  val loss 0.5017  (3219s)
+step 13500  train loss 0.5023  val loss 0.5050  (3342s)
+step 14000  train loss 0.4725  val loss 0.4968  (3466s)
+step 14500  train loss 0.4964  val loss 0.4870  (3589s)
+step 15000  train loss 0.4934  val loss 0.4939  (3712s)
+
+sample:
+	er was playing in the park, and it was a very impressive sunny day. Tim was so happy and excited to play outside, but he was scared to meet a dog.
+Tim's mom saw the dog with the tight answers and said, "Tim, we should not go to the park. We should not judge other kids." Tim did not listen and tried to play on the tight anchor again. The tight answers had learned that it is good to be kind and pati

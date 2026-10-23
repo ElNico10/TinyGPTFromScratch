@@ -1,0 +1,13 @@
+﻿data\TinyStoriesV2-GPT4-train.txt: 89,999,862 bytes read
+data\tokenizer_mix\dolly.txt: 4,999,754 bytes read
+data\tokenizer_mix\code.txt: 4,999,995 bytes read
+83,804 distinct words
+  500 merges (2s)
+  1000 merges (3s)
+  1500 merges (4s)
+  2000 merges (6s)
+  2500 merges (8s)
+  3000 merges (10s)
+  3500 merges (11s)
+round-trip ok on 10 cases (empty, whitespace, indentation, unicode, special markers, all 256 bytes, 5000 random bytes)
+vocabulary 4096: 256 bytes + 3837 merges + 3 special tokens

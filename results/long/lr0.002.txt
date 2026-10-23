@@ -1,0 +1,14 @@
+Namespace(check=False, text='data/TinyStoriesV2-GPT4-train.txt', val_text='data/TinyStoriesV2-GPT4-valid.txt', save_every=0, device='gpu', d=384, layers=6, heads=6, ctx=256, batch=64, steps=1000, lr=0.002, warmup=100, weight_decay=0.1, seed=0, eval_every=250, save='')
+2,227,753,162 training bytes, 22,502,601 validation bytes, 178 distinct, 10,814,208 parameters
+
+step   250  train loss 1.4544  val loss 1.4209  (63s)
+step   500  train loss 1.0406  val loss 1.0548  (125s)
+step   750  train loss 0.8735  val loss 0.8609  (188s)
+step  1000  train loss 0.7707  val loss 0.7752  (251s)
+
+sample:
+	it you had shiny hate my to drink that anything here we proud of the water.
+<|endoftext|>
+Once upon a time, there was a little boy named Tim. He lived in a big house with his hands. One sunny day, Tim saw a big tree and creature in the tree. He thought it was in a big heart and a big tree.
+"Come on, just we are good and want to help your friend." Tim said, "Yes, let's play outside."
+Tim showed his

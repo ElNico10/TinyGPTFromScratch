@@ -1,0 +1,13 @@
+Namespace(check=False, text='data/TinyStoriesV2-GPT4-train.txt', val_text='data/TinyStoriesV2-GPT4-valid.txt', save_every=0, device='gpu', d=384, layers=6, heads=6, ctx=256, batch=64, steps=1000, lr=0.0005, warmup=100, weight_decay=0.1, seed=0, eval_every=250, save='')
+2,227,753,162 training bytes, 22,502,601 validation bytes, 178 distinct, 10,814,208 parameters
+
+step   250  train loss 1.6280  val loss 1.5988  (61s)
+step   500  train loss 1.0832  val loss 1.0927  (123s)
+step   750  train loss 0.9302  val loss 0.9178  (184s)
+step  1000  train loss 0.8409  val loss 0.8457  (245s)
+
+sample:
+	oulight mathat oice up we or up ther fight. The corn was very happy. They saw the next day, a big dog tree. The clotor was not because it was can come. The car started to find a way from.
+The dog ran outside to the park. The lion didn't want to give up. It fell dirt with it, the dog, and the tree. The dog train is so became friends. They all liked to play together.
+<|endoftext|>
+Once upon a time, 

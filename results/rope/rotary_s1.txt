@@ -1,0 +1,20 @@
+Namespace(check=False, text='data/tinystories_train.npy', val_text='data/tinystories_valid.npy', save_every=0, device='gpu', d=384, layers=6, heads=6, ctx=256, batch=64, steps=5000, lr=0.002, warmup=100, weight_decay=0.1, seed=1, eval_every=500, save='', resume='', rope=True, stop_at=0, tokenizer='tokenizer/mix4096.json')
+567,504,241 training tokens, 5,730,567 validation tokens, vocabulary 4096, 3.93 bytes per token, 12,220,416 parameters
+
+step   500  train loss 2.2111  val loss 2.1862  (93s)  bpb 0.8032
+step  1000  train loss 1.9458  val loss 1.9030  (186s)  bpb 0.6991
+step  1500  train loss 1.8226  val loss 1.7707  (279s)  bpb 0.6505
+step  2000  train loss 1.7445  val loss 1.6789  (372s)  bpb 0.6168
+step  2500  train loss 1.6509  val loss 1.6137  (465s)  bpb 0.5928
+step  3000  train loss 1.4911  val loss 1.5600  (558s)  bpb 0.5731
+step  3500  train loss 1.5037  val loss 1.5122  (651s)  bpb 0.5555
+step  4000  train loss 1.4514  val loss 1.4735  (744s)  bpb 0.5413
+step  4500  train loss 1.4064  val loss 1.4507  (837s)  bpb 0.5330
+step  5000  train loss 1.4112  val loss 1.4365  (930s)  bpb 0.5277
+
+sample:
+
+Once upon a time, there was a big rock. The rock was very nice. It had many friends in the woods. It liked to dig and play with its friends.
+One day, the rock found a piece of paper. The paper was hard to hold. The rock felt uncomfortable. It was sad because it wanted to be shiny again. The rock wanted to be shiny again.
+The rock decided to rub the paper. It rubbed and rubbed the paper. Then, something unexpected happened. The paper started to talk to the rock! The rock was not uncomfortable anymore. It was happy and wanted to be shiny again. The rock and its friends played together every day.
+

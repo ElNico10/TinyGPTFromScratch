@@ -1,0 +1,41 @@
+Namespace(check=False, text='data/tinystories_train.npy', val_text='data/tinystories_valid.npy', save_every=2000, device='gpu', d=384, layers=6, heads=6, ctx=256, batch=64, steps=15000, lr=0.002, warmup=100, weight_decay=0.1, seed=0, eval_every=500, save='models/tokens_big.npz', resume='', stop_at=0, tokenizer='tokenizer/mix4096.json')
+567,504,241 training tokens, 5,730,567 validation tokens, vocabulary 4096, 3.93 bytes per token, 12,318,720 parameters
+
+step   500  train loss 2.3628  val loss 2.2897  (129s)  bpb 0.8412
+step  1000  train loss 2.0649  val loss 1.9893  (259s)  bpb 0.7308
+step  1500  train loss 1.9253  val loss 1.8508  (387s)  bpb 0.6799
+step  2000  train loss 1.7642  val loss 1.7697  (515s)  bpb 0.6502
+step  2500  train loss 1.6695  val loss 1.7106  (643s)  bpb 0.6284
+step  3000  train loss 1.6551  val loss 1.6658  (771s)  bpb 0.6120
+step  3500  train loss 1.7002  val loss 1.6338  (900s)  bpb 0.6002
+step  4000  train loss 1.6081  val loss 1.6045  (1029s)  bpb 0.5895
+step  4500  train loss 1.5651  val loss 1.5785  (1158s)  bpb 0.5799
+step  5000  train loss 1.6014  val loss 1.5561  (1288s)  bpb 0.5717
+step  5500  train loss 1.5432  val loss 1.5384  (1417s)  bpb 0.5652
+step  6000  train loss 1.5615  val loss 1.5182  (1545s)  bpb 0.5578
+step  6500  train loss 1.4769  val loss 1.5009  (1672s)  bpb 0.5514
+step  7000  train loss 1.5124  val loss 1.4825  (1800s)  bpb 0.5446
+step  7500  train loss 1.4790  val loss 1.4654  (1928s)  bpb 0.5384
+step  8000  train loss 1.4547  val loss 1.4535  (2057s)  bpb 0.5340
+step  8500  train loss 1.4804  val loss 1.4382  (2186s)  bpb 0.5284
+step  9000  train loss 1.4900  val loss 1.4260  (2316s)  bpb 0.5239
+step  9500  train loss 1.4354  val loss 1.4122  (2447s)  bpb 0.5188
+step 10000  train loss 1.4137  val loss 1.3990  (2578s)  bpb 0.5140
+step 10500  train loss 1.4373  val loss 1.3893  (2709s)  bpb 0.5104
+step 11000  train loss 1.4042  val loss 1.3745  (2841s)  bpb 0.5049
+step 11500  train loss 1.4118  val loss 1.3633  (2973s)  bpb 0.5008
+step 12000  train loss 1.3644  val loss 1.3546  (3102s)  bpb 0.4977
+step 12500  train loss 1.3062  val loss 1.3461  (3231s)  bpb 0.4945
+step 13000  train loss 1.3629  val loss 1.3379  (3359s)  bpb 0.4915
+step 13500  train loss 1.2859  val loss 1.3298  (3486s)  bpb 0.4885
+step 14000  train loss 1.3277  val loss 1.3253  (3613s)  bpb 0.4869
+step 14500  train loss 1.3185  val loss 1.3205  (3741s)  bpb 0.4851
+step 15000  train loss 1.3154  val loss 1.3184  (3868s)  bpb 0.4844
+
+sample:
+
+Once upon a time, there was a big bear and a small rabbit. They lived in a beautiful forest. One day, they wanted to relax under a big tree. They saw a small, stupid bug on a leaf. The bear and rabbit did not like it.
+The bear said, "Big bug, you are stupid. Let's relax and not play." The rabbit laughed and said, "No, thank you. I am not stupid, I am happy."
+But the bear did not listen. He went close to the tree and ate the small, stupid bug. The rabbit was sad and did not want to play with the tiny. The bear said, "I am sorry, you are right. Let's relax and play together."
+They played and had fun under the big tree. The rabbit and rabbit learned not to be stupid. They played happily in the beautiful forest and the big trees.
+

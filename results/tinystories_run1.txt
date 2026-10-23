@@ -1,0 +1,21 @@
+﻿Namespace(check=False, text='data\\TinyStoriesV2-GPT4-valid.txt', device='gpu', d=384, layers=6, heads=6, ctx=256, batch=64, steps=3000, lr=0.001, warmup=100, weight_decay=0.1, seed=0, eval_every=250, save='models\\tinystories_c384_l6.npz')
+22,493,387 characters, 91 distinct, 10,780,800 parameters
+
+step   250  train loss 1.4308  val loss 1.4350  (61s)
+step   500  train loss 0.9519  val loss 1.0087  (122s)
+step   750  train loss 0.8465  val loss 0.8482  (183s)
+step  1000  train loss 0.7543  val loss 0.7698  (244s)
+step  1250  train loss 0.6910  val loss 0.7349  (306s)
+step  1500  train loss 0.6744  val loss 0.7174  (368s)
+step  1750  train loss 0.6304  val loss 0.6794  (430s)
+step  2000  train loss 0.6193  val loss 0.6624  (492s)
+step  2250  train loss 0.6007  val loss 0.6249  (554s)
+step  2500  train loss 0.5739  val loss 0.6282  (616s)
+step  2750  train loss 0.5523  val loss 0.6119  (678s)
+step  3000  train loss 0.5360  val loss 0.6183  (740s)
+
+sample:
+
+Once upon a time, there was a little girl named Jane. Jane loved to run and play in the mud park. One day, Jane heard a strange noise in the mud. She was curious, so she went to wash them to see what was on the other side.
+Jane asked her mom for a strange and put them in a bath. Her mom said yes and she used the problem to build it higher than ever before. 
+They went back to their house and played

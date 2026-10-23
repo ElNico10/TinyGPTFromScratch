@@ -1,0 +1,40 @@
+﻿Namespace(check=False, text='data\\tinystories_train.npy', val_text='data\\tinystories_valid.npy', save_every=2000, device='gpu', d=384, layers=6, heads=6, ctx=256, batch=64, steps=15000, lr=0.002, warmup=100, weight_decay=0.1, seed=0, eval_every=500, save='models\\tokens_rope.npz', resume='', rope=True, stop_at=0, tokenizer='tokenizer\\mix4096.json')
+567,504,241 training tokens, 5,730,567 validation tokens, vocabulary 4096, 3.93 bytes per token, 12,220,416 parameters
+
+step   500  train loss 2.2383  val loss 2.1608  (99s)  bpb 0.7938
+step  1000  train loss 1.9634  val loss 1.8927  (194s)  bpb 0.6953
+step  1500  train loss 1.8503  val loss 1.7712  (288s)  bpb 0.6507
+step  2000  train loss 1.6978  val loss 1.6989  (383s)  bpb 0.6241
+step  2500  train loss 1.6096  val loss 1.6489  (477s)  bpb 0.6058
+step  3000  train loss 1.5975  val loss 1.6118  (572s)  bpb 0.5921
+step  3500  train loss 1.6536  val loss 1.5840  (667s)  bpb 0.5819
+step  4000  train loss 1.5681  val loss 1.5597  (762s)  bpb 0.5730
+step  4500  train loss 1.5309  val loss 1.5384  (856s)  bpb 0.5652
+step  5000  train loss 1.5592  val loss 1.5195  (951s)  bpb 0.5582
+step  5500  train loss 1.5140  val loss 1.5013  (1045s)  bpb 0.5515
+step  6000  train loss 1.5254  val loss 1.4844  (1140s)  bpb 0.5453
+step  6500  train loss 1.4439  val loss 1.4723  (1234s)  bpb 0.5409
+step  7000  train loss 1.4865  val loss 1.4536  (1329s)  bpb 0.5340
+step  7500  train loss 1.4578  val loss 1.4369  (1423s)  bpb 0.5279
+step  8000  train loss 1.4165  val loss 1.4275  (1518s)  bpb 0.5244
+step  8500  train loss 1.4539  val loss 1.4136  (1612s)  bpb 0.5193
+step  9000  train loss 1.4737  val loss 1.4012  (1706s)  bpb 0.5148
+step  9500  train loss 1.4174  val loss 1.3904  (1801s)  bpb 0.5108
+step 10000  train loss 1.3835  val loss 1.3768  (1894s)  bpb 0.5058
+step 10500  train loss 1.4113  val loss 1.3663  (1988s)  bpb 0.5020
+step 11000  train loss 1.3802  val loss 1.3536  (2081s)  bpb 0.4973
+step 11500  train loss 1.3840  val loss 1.3439  (2175s)  bpb 0.4937
+step 12000  train loss 1.3510  val loss 1.3352  (2268s)  bpb 0.4905
+step 12500  train loss 1.2949  val loss 1.3279  (2361s)  bpb 0.4878
+step 13000  train loss 1.3422  val loss 1.3197  (2455s)  bpb 0.4848
+step 13500  train loss 1.2735  val loss 1.3133  (2550s)  bpb 0.4825
+step 14000  train loss 1.3133  val loss 1.3076  (2645s)  bpb 0.4804
+step 14500  train loss 1.2959  val loss 1.3032  (2741s)  bpb 0.4788
+step 15000  train loss 1.2908  val loss 1.3000  (2836s)  bpb 0.4776
+
+sample:
+
+Once upon a time, there was a big parade in the town. All the people were happy and excited to see the parade. In this parade, there were big balloons, fun music, and lots of people. They were all dressed in pretty clothes.
+In this parade, there was a little girl named Lucy who was playing her flute. She loved to listen to her friends play the flute. Lucy's mom told her, "Lucy, be careful with your flute. Don't play too hard near the big tree." But Lucy was curious and wanted to try it.
+Lucy played the flute very hard, and something unexpected happened. The big tree started to shake, and all the people in the parade started to dance. Lucy, her mom, and her dad watched in surprise. They were amazed by the dance. The parade was getting closer and closer, but the tree reminded them of their fun day at the parade.
+

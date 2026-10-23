@@ -1,0 +1,20 @@
+Namespace(check=False, text='data/tinystories_train.npy', val_text='data/tinystories_valid.npy', save_every=0, device='gpu', d=384, layers=6, heads=6, ctx=256, batch=64, steps=5000, lr=0.002, warmup=100, weight_decay=0.1, seed=0, eval_every=500, save='', resume='', rope=True, stop_at=0, tokenizer='tokenizer/mix4096.json')
+567,504,241 training tokens, 5,730,567 validation tokens, vocabulary 4096, 3.93 bytes per token, 12,220,416 parameters
+
+step   500  train loss 2.2365  val loss 2.1579  (93s)  bpb 0.7928
+step  1000  train loss 1.9602  val loss 1.8842  (186s)  bpb 0.6922
+step  1500  train loss 1.8309  val loss 1.7557  (279s)  bpb 0.6450
+step  2000  train loss 1.6647  val loss 1.6720  (372s)  bpb 0.6143
+step  2500  train loss 1.5540  val loss 1.6061  (465s)  bpb 0.5901
+step  3000  train loss 1.5405  val loss 1.5521  (558s)  bpb 0.5702
+step  3500  train loss 1.5591  val loss 1.5079  (651s)  bpb 0.5540
+step  4000  train loss 1.4804  val loss 1.4735  (744s)  bpb 0.5413
+step  4500  train loss 1.4368  val loss 1.4466  (837s)  bpb 0.5315
+step  5000  train loss 1.4695  val loss 1.4328  (930s)  bpb 0.5264
+
+sample:
+
+Once upon a time, there was a big lion. The lion was very nice. He liked to play with kids in the forest. They liked to have fun together. The lion was very happy.
+One day, the lion went to the forest to play with the other animals. But the trees, the monkeys, the monkeys the rabbits, was scared. They made a loud noise. The lion felt very angry.
+The lion said, "I am sorry. I will not do that again." The lion and his friends were very sad. They did not want to play with the monkeys anymore. The lion was sad too. But they still played together with the animals, and the lion was still a good friend.
+

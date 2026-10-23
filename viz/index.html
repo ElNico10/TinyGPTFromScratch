@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Text model viewer</title>
+<style>
+  :root { --bg:#0e1117; --card:#161b24; --card2:#1c2230; --line:#2a3243; --text:#e6eaf2; --mute:#8d97ab;
+          --blue:#5aa2ff; --green:#4ad58a; --orange:#ffb454; --red:#ff6b7a; --gray:#7b8499; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:14px/1.45 system-ui, "Segoe UI", Roboto, sans-serif; }
+  header { position:sticky; top:0; z-index:5; display:flex; flex-wrap:wrap; gap:14px 18px; align-items:center; padding:12px 20px;
+           background:rgba(14,17,23,.93); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); }
+  h1 { font-size:16px; margin:0 8px 0 0; }
+  label { color:var(--mute); font-size:12px; display:flex; flex-direction:column; gap:3px; min-width:0; }
+  select, input, textarea, button { background:var(--card2); color:var(--text); border:1px solid var(--line); border-radius:8px; padding:7px 10px; font:inherit; max-width:420px; }
+  select { min-width:200px; } button { cursor:pointer; } button:hover { border-color:var(--blue); } button:disabled { opacity:.5; cursor:wait; }
+  .pill { display:inline-flex; align-items:center; gap:7px; padding:4px 11px; border-radius:99px; border:1px solid var(--line); font-size:12px; color:var(--mute); }
+  .dot { width:8px; height:8px; border-radius:50%; background:var(--gray); }
+  .live { color:var(--green); border-color:#25563c; } .live .dot { background:var(--green); animation:pulse 1.4s infinite; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(74,213,138,.6)} 70%{box-shadow:0 0 0 8px rgba(74,213,138,0)} 100%{box-shadow:0 0 0 0 rgba(74,213,138,0)} }
+  main { display:grid; gap:16px; padding:18px 20px 40px; max-width:1300px; margin:0 auto; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px; min-width:0; }
+  h2 { font-size:12px; text-transform:uppercase; letter-spacing:.9px; color:var(--mute); margin:0 0 12px; font-weight:600; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:10px; margin-bottom:14px; }
+  .stat { background:var(--card2); border-radius:10px; padding:9px 12px; }
+  .stat b { display:block; font-size:19px; font-variant-numeric:tabular-nums; } .stat span { color:var(--mute); font-size:11.5px; }
+  .charts { display:grid; grid-template-columns:2fr 1fr; gap:14px; } @media (max-width:900px) { .charts { grid-template-columns:1fr; } }
+  canvas.chart { width:100%; height:260px; display:block; }
+  .meta { color:var(--mute); font-size:12.5px; margin-top:8px; }
+  .ctrl { display:flex; gap:12px; align-items:end; flex-wrap:wrap; margin:10px 0; } .ctrl input[type=number] { width:90px; }
+  textarea { width:100%; max-width:none; min-height:84px; resize:vertical; }
+  #out { white-space:pre-wrap; background:var(--card2); border-radius:10px; padding:12px 14px; margin-top:12px; min-height:70px; line-height:1.55; }
+  #out .p { color:var(--mute); } .err { color:var(--red); font-size:12.5px; margin-top:8px; }
+  pre.sample { white-space:pre-wrap; background:var(--card2); border-radius:10px; padding:12px 14px; margin:0; font:inherit; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Text model viewer</h1>
+  <label>Training run <select id="run"></select></label>
+  <label>Compare with <select id="cmp"></select></label>
+  <span class="pill" id="status"><span class="dot"></span><span id="statusText">no run</span></span>
+</header>
+<main>
+  <section class="card">
+    <h2>Training</h2>
+    <div class="stats" id="stats"></div>
+    <div class="charts">
+      <div><canvas class="chart" id="loss"></canvas></div>
+      <div><canvas class="chart" id="lrc"></canvas></div>
+    </div>
+    <div class="meta" id="meta"></div>
+  </section>
+  <section class="card" id="sampleCard" hidden>
+    <h2>Sample printed at the end of the selected run</h2>
+    <pre class="sample" id="sample"></pre>
+  </section>
+  <section class="card">
+    <h2>Try the model</h2>
+    <div class="ctrl">
+      <label>Model <select id="model"></select></label>
+      <label>Temperature <input type="number" id="temp" value="0.8" min="0.1" max="2" step="0.1"></label>
+      <label>Length (tokens; a byte model's token is one character) <input type="number" id="len" value="300" min="1" max="600" step="50"></label>
+      <label>Run on <select id="device"><option value="cpu">CPU (safe during training)</option><option value="gpu">GPU (shares the GPU with training)</option></select></label>
+    </div>
+    <textarea id="prompt" placeholder="Type the beginning of a story, or leave empty">Once upon a time there was a little dog named</textarea>
+    <div class="ctrl"><button id="go">Generate</button><span class="meta" id="genMeta">CPU generation never slows a training run; GPU generation is faster but competes with one.</span></div>
+    <div id="out"></div>
+    <div class="err" id="genErr"></div>
+  </section>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const get = async u => { const r = await fetch(u); const j = await r.json(); if (j.error) throw new Error(j.error); return j; };
+const fmt = (s) => { s = Math.round(s); return s >= 3600 ? `${Math.floor(s/3600)}h ${Math.floor(s%3600/60)}m` : s >= 60 ? `${Math.floor(s/60)}m ${s%60}s` : `${s}s`; };
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+function drawLines(canvas, series, xlabel, marker) {
+  const dpr = devicePixelRatio || 1, W = canvas.clientWidth, H = canvas.clientHeight;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  const g = canvas.getContext("2d"); g.scale(dpr, dpr); g.clearRect(0, 0, W, H);
+  const pts = series.flatMap(s => s.pts);
+  if (!pts.length) { g.fillStyle = css("--mute"); g.fillText("no data yet", 20, 30); return; }
+  const L = 52, R = 12, T = 12, B = 30;
+  let x0 = Math.min(...pts.map(p => p[0])), x1 = Math.max(...pts.map(p => p[0])), y0 = Math.min(...pts.map(p => p[1])), y1 = Math.max(...pts.map(p => p[1]));
+  if (x1 === x0) x1 = x0 + 1; const pad = (y1 - y0) * 0.06 || 0.1; y0 -= pad; y1 += pad;
+  const X = x => L + (x - x0) / (x1 - x0) * (W - L - R), Y = y => T + (1 - (y - y0) / (y1 - y0)) * (H - T - B);
+  g.font = "11px system-ui"; g.strokeStyle = css("--line"); g.fillStyle = css("--mute"); g.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) { const v = y0 + (y1 - y0) * i / 4, y = Y(v); g.beginPath(); g.moveTo(L, y); g.lineTo(W - R, y); g.stroke(); g.textAlign = "right"; g.fillText(v.toPrecision(3), L - 6, y + 4); }
+  g.textAlign = "center";
+  for (let i = 0; i <= 4; i++) { const v = x0 + (x1 - x0) * i / 4; g.fillText(Math.round(v), X(v), H - 12); }
+  g.fillText(xlabel, (L + W - R) / 2, H - 1);
+  for (const s of series) {
+    g.strokeStyle = s.color; g.lineWidth = 2; g.setLineDash(s.dash || []); g.beginPath();
+    s.pts.forEach((p, i) => i ? g.lineTo(X(p[0]), Y(p[1])) : g.moveTo(X(p[0]), Y(p[1]))); g.stroke();
+  }
+  g.setLineDash([]);
+  if (marker != null && marker >= x0 && marker <= x1) { g.strokeStyle = css("--orange"); g.beginPath(); g.moveTo(X(marker), T); g.lineTo(X(marker), H - B); g.stroke(); }
+  g.textAlign = "left"; series.filter(s => s.name).forEach((s, i) => { g.fillStyle = s.color; g.fillRect(L + 8, T + 8 + i * 15, 12, 3); g.fillStyle = css("--text"); g.fillText(s.name, L + 26, T + 13 + i * 15); });
+}
+
+let current = null, cmpLog = null, timer = null, paint = () => {};
+new ResizeObserver(() => paint()).observe(document.body);  // redraw when the window changes size or the page first becomes visible
+function stat(label, value) { return `<div class="stat"><b>${value}</b><span>${label}</span></div>`; }
+
+async function show() {
+  const path = $("run").value; if (!path) return;
+  const d = await get("/api/log?path=" + encodeURIComponent(path)); current = d;
+  const rows = d.rows, last = rows[rows.length - 1];
+  const live = d.running; $("status").className = "pill" + (live ? " live" : ""); $("statusText").textContent = live ? "training now" : (d.total && last.step >= d.total ? "finished" : "stopped");
+  const best = Math.min(...rows.map(r => r.val)), perStep = last.secs / last.step;
+  $("stats").innerHTML = stat("step", `${last.step} / ${d.total || "?"}`) + stat("validation loss", last.val.toFixed(4)) + stat("best validation loss", best.toFixed(4)) +
+    stat("train loss (one batch)", last.train.toFixed(4)) + stat("validation bits per byte", last.bpb.toFixed(3)) + stat("time elapsed", fmt(last.secs)) +
+    stat("time left", live ? fmt((d.total - last.step) * perStep) : "-") + stat("parameters", d.params ? (d.params / 1e6).toFixed(2) + "M" : "?");
+  const a = d.args; $("meta").textContent = `learning rate ${a.lr}, batch ${a.batch}, context ${a.ctx}, width ${a.d}, ${a.layers} layers, ${a.heads} heads, weight decay ${a.weight_decay}, warmup ${a.warmup}. Validation loss is measured on 8 random batches, so changes under about 0.01 are noise.`;
+  const S = [{ name: "validation", color: css("--blue"), pts: rows.map(r => [r.step, r.bpb]) }, { name: "train", color: css("--gray"), dash: [4, 3], pts: rows.map(r => [r.step, r.train_bpb]) }];
+  if (cmpLog && cmpLog.rows.length) S.push({ name: "other run: validation", color: css("--orange"), pts: cmpLog.rows.map(r => [r.step, r.bpb]) }, { name: "other run: train", color: css("--red"), dash: [4, 3], pts: cmpLog.rows.map(r => [r.step, r.train_bpb]) });
+  let s = null; try { s = await get("/api/schedule?path=" + encodeURIComponent(path)); } catch (e) {}
+  paint = () => {
+    drawLines($("loss"), S, "step (bits per byte: lower is better)");
+    drawLines($("lrc"), s ? [{ name: "learning rate", color: css("--green"), pts: s.steps.map((x, i) => [x, s.lr[i]]) }] : [], "step", last.step);
+  };
+  paint();
+  $("sampleCard").hidden = !d.sample; $("sample").textContent = d.sample || "";
+  clearTimeout(timer); if (live) timer = setTimeout(() => show().catch(() => {}), 4000);
+}
+
+async function pickCompare() {
+  const p = $("cmp").value; cmpLog = p ? await get("/api/log?path=" + encodeURIComponent(p)) : null; await show();
+}
+
+async function init() {
+  const runs = await get("/api/runs");
+  $("run").innerHTML = runs.map(r => `<option value="${r.path}">${r.path.replace("results/", "")}  (${r.done}/${r.total}${r.running ? ", live" : ""})</option>`).join("");
+  $("cmp").innerHTML = `<option value="">none</option>` + runs.map(r => `<option value="${r.path}">${r.path.replace("results/", "")}</option>`).join("");
+  const models = await get("/api/models");
+  $("model").innerHTML = models.map(m => `<option value="${m.path}">${m.path.replace("models/", "")}  (${m.layers} layers, width ${m.d}, ${m.steps} steps)</option>`).join("");
+  $("run").onchange = () => show(); $("cmp").onchange = pickCompare;
+  await show();
+}
+
+$("go").onclick = async () => {
+  const btn = $("go"), prompt = $("prompt").value; btn.disabled = true; $("genErr").textContent = ""; $("genMeta").textContent = "generating...";
+  try {
+    const r = await fetch("/api/generate", { method: "POST", body: JSON.stringify({ path: $("model").value, prompt, length: $("len").value, temperature: $("temp").value, device: $("device").value }) });
+    const j = await r.json(); if (j.error) throw new Error(j.error);
+    const out = $("out"); out.textContent = "";
+    const split = j.text.startsWith(prompt) ? prompt.length : 0;
+    const a = document.createElement("span"); a.className = "p"; a.textContent = j.text.slice(0, split); out.append(a, j.text.slice(split));
+    $("genMeta").textContent = `${j.secs}s on the ${$("device").value.toUpperCase()} (${(j.n / j.secs).toFixed(0)} tokens and ${(Math.max(j.chars, 0) / j.secs).toFixed(0)} characters per second, including the first call's one-time startup)` + (j.ended ? "; the model ended the story" : "");
+  } catch (e) { $("genErr").textContent = e.message; $("genMeta").textContent = ""; }
+  btn.disabled = false;
+};
+init().catch(e => { $("meta").textContent = "Could not load: " + e.message; });
+</script>
+</body>
+</html>

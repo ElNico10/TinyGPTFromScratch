@@ -1,0 +1,14 @@
+Namespace(check=False, text='data/tinystories_train.npy', val_text='data/tinystories_valid.npy', save_every=0, device='gpu', d=384, layers=6, heads=6, ctx=256, batch=64, steps=1000, lr=0.004, warmup=100, weight_decay=0.1, seed=0, eval_every=250, save='', resume='', stop_at=0, tokenizer='tokenizer/mix4096.json')
+567,504,241 training tokens, 5,730,567 validation tokens, vocabulary 4096, 3.93 bytes per token, 12,318,720 parameters
+
+step   250  train loss 3.1383  val loss 3.1949  (65s)  bpb 1.1737
+step   500  train loss 2.6153  val loss 2.5281  (130s)  bpb 0.9288
+step   750  train loss 2.2437  val loss 2.2100  (194s)  bpb 0.8119
+step  1000  train loss 2.1628  val loss 2.0730  (259s)  bpb 0.7616
+
+sample:
+
+Once upon a time, there was a big wind in the sky. The wind was very strong and it could often balance on many trees. People in the sky. One day, a little girl named Sue wanted to see the birds. She started to run away, and even faster.
+As the wind blew hard, the wind blew hard, and she fell down. Sue fell down and hurt her knee. Her mom heard and came to help. She was very sad. She did not know what to do.
+Sue's mom saw the wind and got very angry. She came and hugged her. She said, "Don't worry, Sue. We will fix your knee and make it nice." Sue was so happy. She knew she would be okay to help her feel better when she needed it.
+

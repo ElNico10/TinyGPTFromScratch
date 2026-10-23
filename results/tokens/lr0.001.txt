@@ -1,0 +1,17 @@
+Namespace(check=False, text='data/tinystories_train.npy', val_text='data/tinystories_valid.npy', save_every=0, device='gpu', d=384, layers=6, heads=6, ctx=256, batch=64, steps=1000, lr=0.001, warmup=100, weight_decay=0.1, seed=0, eval_every=250, save='', resume='', stop_at=0, tokenizer='tokenizer/mix4096.json')
+567,504,241 training tokens, 5,730,567 validation tokens, vocabulary 4096, 3.93 bytes per token, 12,318,720 parameters
+
+step   250  train loss 2.8644  val loss 2.8888  (64s)  bpb 1.0613
+step   500  train loss 2.4237  val loss 2.3312  (129s)  bpb 0.8564
+step   750  train loss 2.1045  val loss 2.0861  (193s)  bpb 0.7664
+step  1000  train loss 2.0622  val loss 1.9799  (257s)  bpb 0.7274
+
+sample:
+
+Once upon a time, there was a big bear named Ben. Ben loved to play in the forest. One sunny day, Ben saw a group of other animals playing in the park. They were all having fun. Ben wanted to join the rabbits too, but he was too shy to find the his one.
+Ben said, "Who can I join you?" The rabbit replied, "I want to play!" But Ben was not happy. He wanted the other animals to play with Ben. Ben tried to hide the rabbit, but he was not there. Ben was too small to get him.
+Ben had an idea. He said, "Stop the rabbit, Ben. You can't play with your toys. You can't play with us. You can't have fun or show them." Ben was scared, but he wanted to be kind.
+Ben pushed the rabbit to the hill, and washed the tea. Ben did not like the rabbit. He was not nice. He did not like the other animals. The lion was angry and angry. They ran away and chased Ben.
+Ben was very sad. He did not mean to chase Ben anymore. They were friends. They did not want to be nice.
+Ben did not like the other animals. He thought he was silly. He wished he had a friend. He wished he could have a friend.
+

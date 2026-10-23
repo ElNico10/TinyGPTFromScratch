@@ -1,0 +1,21 @@
+Namespace(check=False, text='data/tinystories_train.npy', val_text='data/tinystories_valid.npy', save_every=0, device='gpu', d=384, layers=6, heads=6, ctx=256, batch=64, steps=5000, lr=0.002, warmup=100, weight_decay=0.1, seed=0, eval_every=500, save='', resume='', rope=False, stop_at=0, tokenizer='tokenizer/mix4096.json')
+567,504,241 training tokens, 5,730,567 validation tokens, vocabulary 4096, 3.93 bytes per token, 12,318,720 parameters
+
+step   500  train loss 2.3616  val loss 2.2874  (94s)  bpb 0.8404
+step  1000  train loss 2.0529  val loss 1.9777  (185s)  bpb 0.7265
+step  1500  train loss 1.9080  val loss 1.8305  (281s)  bpb 0.6725
+step  2000  train loss 1.7346  val loss 1.7364  (372s)  bpb 0.6379
+step  2500  train loss 1.6159  val loss 1.6601  (464s)  bpb 0.6099
+step  3000  train loss 1.5864  val loss 1.6035  (556s)  bpb 0.5891
+step  3500  train loss 1.6134  val loss 1.5522  (647s)  bpb 0.5702
+step  4000  train loss 1.5081  val loss 1.5116  (738s)  bpb 0.5553
+step  4500  train loss 1.4647  val loss 1.4848  (828s)  bpb 0.5455
+step  5000  train loss 1.5096  val loss 1.4673  (919s)  bpb 0.5391
+
+sample:
+
+Once upon a time, there was a big hill. In the hill, there was a bird named Ben. Ben liked to fly and play all day. One day, Ben saw a new friend. It was a soft rabbit named Rino. Ben was sad.
+Ben asked Rino, "Why are you sad?" Rino said, "I want to fly like Ben. I don't want to play with you." Ben wanted to help Ben. He had an idea. Ben took Rino to fly.
+Rino flew up to Ben and said, "Let's play. I can show you how they fly!" Ben was excited. They played together and had lots of fun. Ben was very happy. But then, they saw a big dog coming. The dog wanted to bite them and take their toys.
+The big dog chased Ben and Rino, but Remy was faster. Rino won, and they both felt sad. They never wanted to fly like Ben again.
+

@@ -1,0 +1,13 @@
+Namespace(check=False, text='data/TinyStoriesV2-GPT4-train.txt', val_text='data/TinyStoriesV2-GPT4-valid.txt', save_every=0, device='gpu', d=384, layers=6, heads=6, ctx=256, batch=64, steps=1000, lr=0.001, warmup=100, weight_decay=0.1, seed=0, eval_every=250, save='')
+2,227,753,162 training bytes, 22,502,601 validation bytes, 178 distinct, 10,814,208 parameters
+
+step   250  train loss 1.4614  val loss 1.4412  (62s)
+step   500  train loss 0.9858  val loss 0.9980  (123s)
+step   750  train loss 0.8402  val loss 0.8237  (184s)
+step  1000  train loss 0.7436  val loss 0.7558  (245s)
+
+sample:
+	uy youre are were carefused as afranched their parents and made them wash safe. They are happy and sleepy.
+<|endoftext|>
+Once upon a time, there was a little boy named Tom. Tom loved to watch him and play with his friends. One day, Tom saw a big cat of schalkfast that said. He liked his red button and said, "I want to impatie for your cat!"
+Tom said, "I lost like it too!" He was very happy with hi

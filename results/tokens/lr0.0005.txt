@@ -1,0 +1,15 @@
+Namespace(check=False, text='data/tinystories_train.npy', val_text='data/tinystories_valid.npy', save_every=0, device='gpu', d=384, layers=6, heads=6, ctx=256, batch=64, steps=1000, lr=0.0005, warmup=100, weight_decay=0.1, seed=0, eval_every=250, save='', resume='', stop_at=0, tokenizer='tokenizer/mix4096.json')
+567,504,241 training tokens, 5,730,567 validation tokens, vocabulary 4096, 3.93 bytes per token, 12,318,720 parameters
+
+step   250  train loss 3.1169  val loss 3.1590  (65s)  bpb 1.1605
+step   500  train loss 2.6272  val loss 2.5466  (131s)  bpb 0.9356
+step   750  train loss 2.3113  val loss 2.2829  (196s)  bpb 0.8387
+step  1000  train loss 2.2698  val loss 2.1804  (261s)  bpb 0.8010
+
+sample:
+
+Once upon a time, there was a big boy named Tim. He had a big, red hat. Tim liked to walk with his mom in the park. One day, he saw a big tree with a small wings. He wanted to climb it.
+Tim saw a red apple on the tree. He tried to climb the tree. Then, he pushed the apple, but it was too hard. Tim was sad. He wanted to help his mom.
+Tim saw a bird on the tree. He asked his mom to help him. She said, "Don't worry, Tim. Let's go of the tree and see what is behind it." Tim looked around and saw a little bird. The bird was stuck in a branch. The bird was surprised!
+Tim wanted to help the bird. He thought about it all his toys to help the bird. He brought the stick to the bird's trunk. The bird flew down and thanked the bird. Tim and the bird became good friends and played together in the tree. From that day on, the bird was not sad anymore.
+

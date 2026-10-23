@@ -1,0 +1,7 @@
+﻿lr 0.0005  val loss 2.1804
+lr 0.001  val loss 1.9799
+lr 0.002  val loss 1.8831
+best so far 0.002 is at the edge of the range; trying 0.004 too
+lr 0.004  val loss 2.073
+best lr 0.002
+done

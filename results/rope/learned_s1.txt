@@ -1,0 +1,20 @@
+Namespace(check=False, text='data/tinystories_train.npy', val_text='data/tinystories_valid.npy', save_every=0, device='gpu', d=384, layers=6, heads=6, ctx=256, batch=64, steps=5000, lr=0.002, warmup=100, weight_decay=0.1, seed=1, eval_every=500, save='', resume='', rope=False, stop_at=0, tokenizer='tokenizer/mix4096.json')
+567,504,241 training tokens, 5,730,567 validation tokens, vocabulary 4096, 3.93 bytes per token, 12,318,720 parameters
+
+step   500  train loss 2.3543  val loss 2.3190  (91s)  bpb 0.8519
+step  1000  train loss 2.0426  val loss 1.9926  (182s)  bpb 0.7320
+step  1500  train loss 1.9002  val loss 1.8353  (273s)  bpb 0.6742
+step  2000  train loss 1.8101  val loss 1.7390  (363s)  bpb 0.6389
+step  2500  train loss 1.6987  val loss 1.6649  (454s)  bpb 0.6116
+step  3000  train loss 1.5296  val loss 1.6019  (545s)  bpb 0.5885
+step  3500  train loss 1.5381  val loss 1.5512  (635s)  bpb 0.5699
+step  4000  train loss 1.4891  val loss 1.5084  (726s)  bpb 0.5542
+step  4500  train loss 1.4408  val loss 1.4833  (816s)  bpb 0.5449
+step  5000  train loss 1.4396  val loss 1.4689  (907s)  bpb 0.5396
+
+sample:
+
+Once upon a time, there was a big bear named Bob. Bob liked to find things. One day, Bob found a long cable on the ground. He thought it was a fun toy to play with. He picked it up and started to run around with it.
+Bob met his friend, a small bird named Tim. Tim asked, "Do you know what this big cable is for?" Bob looked at the cable and said, "I don't know, but I can fly very high and play with this cable. It will make you fly!" Tim was very happy and wanted to try.
+Bob and Tim started to fly around the cable. They saw other animals and birds trying to catch them. Finally, they caught the cable and started to play again. They were both very tired, but they had fun playing with the cable and the other animals. After a while, they became tired and decided to rest. They became good friends and played together every day.
+
